@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meditation/core/common/widgets/app_state_wrapper.dart';
+import 'package:meditation/core/utils/responsiveness.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -7,9 +9,22 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(),
+    return AppStateWrapper(
+      builder: (colors, ref) => Scaffold(
+        backgroundColor: Colors.white,
+        body: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.symmetric(
+                horizontal: appW(16),
+              ),
+              sliver: SliverList.list(children: [
+                
+              ],),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
