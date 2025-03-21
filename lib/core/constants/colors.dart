@@ -8,4 +8,5 @@ class AppColors {
   Color bg = Color(0xFFFFFFFF);
   Color green = Color(0xFF366155);
   Color black = Color(0xFF2E2F36);
+  Color orange = Color(0xFFFF7338);
 }
