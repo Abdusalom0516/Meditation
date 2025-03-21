@@ -59,7 +59,7 @@ class CustomTypeCard extends StatelessWidget {
                               ),
                               alignment: Alignment.center,
                               padding: EdgeInsets.symmetric(
-                                horizontal: appW(8),
+                                horizontal: appW(11),
                                 vertical: appH(5),
                               ),
                               decoration: BoxDecoration(

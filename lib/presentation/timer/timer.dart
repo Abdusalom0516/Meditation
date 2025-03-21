@@ -18,6 +18,42 @@ class TimerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppStateWrapper(
       builder: (colors, ref) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: color,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: colors.bg,
+              size: appW(35),
+            ),
+            onPressed: () => Navigator.pop(context),
+          ),
+          toolbarHeight: appH(75),
+          title: IntrinsicWidth(
+            child: Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.symmetric(
+                horizontal: appW(11),
+                vertical: appH(5),
+              ),
+              decoration: BoxDecoration(
+                color: colors.bg,
+                borderRadius: BorderRadius.circular(appW(18)),
+              ),
+              child: Text(
+                time,
+                style: TextStyle(
+                  color: colors.black,
+                  fontSize: appW(10),
+                  fontWeight: FontWeight.bold,
+                  fontFamily: FontNames.poppins,
+                ),
+              ),
+            ),
+          ),
+          centerTitle: true,
+        ),
         backgroundColor: color,
         body: Stack(
           children: [
@@ -45,7 +81,7 @@ class TimerScreen extends StatelessWidget {
                           fontFamily: FontNames.poppins,
                         ),
                       ),
-                      SizedBox(height: appH(10)),
+                      SizedBox(height: appH(35)),
                       Container(
                         height: appH(70),
                         width: appW(70),
@@ -61,6 +97,17 @@ class TimerScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      SizedBox(height: appH(15)),
+                      Text(
+                        "10:00",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: appW(21),
+                          fontWeight: FontWeight.bold,
+                          fontFamily: FontNames.poppins,
+                        ),
+                      ),
+                      SizedBox(height: appH(79)),
                     ],
                   ),
                 )
