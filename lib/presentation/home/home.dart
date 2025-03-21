@@ -4,6 +4,8 @@ import 'package:meditation/core/common/widgets/app_state_wrapper.dart';
 import 'package:meditation/core/constants/font_names.dart';
 import 'package:meditation/core/constants/image_paths.dart';
 import 'package:meditation/core/utils/responsiveness.dart';
+import 'package:meditation/presentation/home/widgets/custom_type_card.dart';
+import 'package:meditation/presentation/timer/timer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -185,12 +187,38 @@ class HomeScreen extends StatelessWidget {
                                 image: ImagePaths.greenFace,
                                 time: "5 minutes",
                                 title: "Anxiety",
+                                func: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => TimerScreen(
+                                        title: "Anxiety",
+                                        time: "5 minutes",
+                                        image: ImagePaths.greenFace,
+                                        color: colors.green,
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                               CustomTypeCard(
                                 color: colors.darkBlue,
                                 image: ImagePaths.darkBlueFace,
                                 time: "12 minutes",
                                 title: "Physical \nhealth",
+                                func: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => TimerScreen(
+                                        title: "Physical health",
+                                        time: "12 minutes",
+                                        image: ImagePaths.darkBlueFace,
+                                        color: colors.darkBlue,
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                             ],
                           ),
@@ -208,12 +236,38 @@ class HomeScreen extends StatelessWidget {
                                 image: ImagePaths.yellowFace,
                                 time: "7 minutes",
                                 title: "Productivity",
+                                func: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => TimerScreen(
+                                        title: "Productivity",
+                                        time: "7 minutes",
+                                        image: ImagePaths.yellowFace,
+                                        color: colors.yellow,
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                               CustomTypeCard(
                                 color: colors.red,
                                 image: ImagePaths.redFace,
                                 time: "15 minutes",
                                 title: "Work life",
+                                func: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => TimerScreen(
+                                        title: "Work life",
+                                        time: "15 minutes",
+                                        image: ImagePaths.redFace,
+                                        color: colors.red,
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                             ],
                           ),
@@ -229,99 +283,6 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomTypeCard extends StatelessWidget {
-  const CustomTypeCard({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.time,
-    required this.color,
-  });
-  final String image, title, time;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return AppStateWrapper(
-      builder: (colors, ref) => Expanded(
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(appW(16)),
-          ),
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          elevation: appH(3),
-          child: Container(
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(appW(16)),
-            ),
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Image.asset(
-                    image,
-                    fit: BoxFit.cover,
-                    height: appH(125),
-                    width: appW(95),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(appW(8)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(
-                              top: appH(3),
-                            ),
-                            alignment: Alignment.center,
-                            padding: EdgeInsets.symmetric(
-                              horizontal: appW(8),
-                              vertical: appH(5),
-                            ),
-                            decoration: BoxDecoration(
-                              color: colors.bg,
-                              borderRadius: BorderRadius.circular(appW(18)),
-                            ),
-                            child: Text(
-                              time,
-                              style: TextStyle(
-                                color: colors.black,
-                                fontSize: appW(10),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: FontNames.poppins,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            textAlign: TextAlign.end,
-                            title,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: appW(16),
-                              fontWeight: FontWeight.bold,
-                              fontFamily: FontNames.poppins,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
           ),
         ),
       ),
