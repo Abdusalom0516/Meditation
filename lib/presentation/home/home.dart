@@ -7,7 +7,6 @@ import 'package:meditation/core/utils/responsiveness.dart';
 import 'package:meditation/presentation/home/widgets/custom_type_card.dart';
 import 'package:meditation/presentation/timer/timer.dart';
 import 'package:meditation/providers/timer_minute_provider.dart.dart';
-import 'package:meditation/providers/timer_second_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
