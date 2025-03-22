@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:meditation/core/common/widgets/app_state_wrapper.dart';
 import 'package:meditation/core/constants/font_names.dart';
 import 'package:meditation/core/utils/responsiveness.dart';
+import 'package:meditation/providers/timer_minute_provider.dart.dart';
+import 'package:meditation/providers/timer_second_provider.dart';
 
 class TimerScreen extends StatelessWidget {
   const TimerScreen({
@@ -82,24 +84,33 @@ class TimerScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: appH(35)),
-                      Container(
-                        height: appH(70),
-                        width: appW(70),
-                        decoration: BoxDecoration(
-                          color: colors.orange,
-                          shape: BoxShape.circle,
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          minimumSize: Size.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
-                        child: Center(
-                          child: Icon(
-                            Icons.play_arrow_rounded,
-                            color: Colors.white,
-                            size: appW(40),
+                        onPressed: () =>
+                            ref.read(timerSecondProvider.notifier).start(ref),
+                        child: Container(
+                          height: appH(70),
+                          width: appW(70),
+                          decoration: BoxDecoration(
+                            color: colors.orange,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Center(
+                            child: Icon(
+                              Icons.play_arrow_rounded,
+                              color: Colors.white,
+                              size: appW(40),
+                            ),
                           ),
                         ),
                       ),
                       SizedBox(height: appH(15)),
                       Text(
-                        "10:00",
+                        "${ref.watch(timerMinuteProvider).toString().padLeft(2, "0")}:${ref.watch(timerSecondProvider).toString().padLeft(2, "0")}",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: appW(21),

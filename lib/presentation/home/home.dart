@@ -6,6 +6,8 @@ import 'package:meditation/core/constants/image_paths.dart';
 import 'package:meditation/core/utils/responsiveness.dart';
 import 'package:meditation/presentation/home/widgets/custom_type_card.dart';
 import 'package:meditation/presentation/timer/timer.dart';
+import 'package:meditation/providers/timer_minute_provider.dart.dart';
+import 'package:meditation/providers/timer_second_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -40,127 +42,146 @@ class HomeScreen extends StatelessWidget {
                     ),
                     sliver: SliverList.list(
                       children: [
-                        Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(appW(16)),
-                          ),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          elevation: appH(3),
-                          child: Container(
-                              padding: EdgeInsets.only(
-                                right: appW(8),
-                                top: appW(8),
+                        InkWell(
+                          onTap: () {
+                            ref.read(timerMinuteProvider.notifier).initialize(5);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => TimerScreen(
+                                  title: "Falling asleep",
+                                  time: "5 minutes",
+                                  image: ImagePaths.blueFace,
+                                  color: colors.blue,
+                                ),
                               ),
-                              height: appH(200),
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: colors.blue,
-                                borderRadius: BorderRadius.circular(appW(16)),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: Image.asset(
-                                      ImagePaths.blueFace,
-                                      fit: BoxFit.cover,
-                                      height: appH(225),
-                                      width: appW(195),
+                            );
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(appW(16)),
+                            ),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            elevation: appH(3),
+                            child: Container(
+                                padding: EdgeInsets.only(
+                                  right: appW(8),
+                                  top: appW(8),
+                                ),
+                                height: appH(200),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: colors.blue,
+                                  borderRadius: BorderRadius.circular(appW(16)),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.bottomLeft,
+                                      child: Image.asset(
+                                        ImagePaths.blueFace,
+                                        fit: BoxFit.cover,
+                                        height: appH(225),
+                                        width: appW(195),
+                                      ),
                                     ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                          bottom: appW(17),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            Container(
-                                              margin: EdgeInsets.only(
-                                                top: appH(3),
-                                              ),
-                                              alignment: Alignment.center,
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: appW(11),
-                                                vertical: appH(5),
-                                              ),
-                                              decoration: BoxDecoration(
-                                                color: colors.bg,
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        appW(18)),
-                                              ),
-                                              child: Text(
-                                                "5 minutes",
-                                                style: TextStyle(
-                                                  color: colors.black,
-                                                  fontSize: appW(10),
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: FontNames.poppins,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            bottom: appW(17),
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                  top: appH(3),
                                                 ),
-                                              ),
-                                            ),
-                                            Column(
-                                              children: [
-                                                Text(
-                                                  "Falling asleep",
+                                                alignment: Alignment.center,
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: appW(11),
+                                                  vertical: appH(5),
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  color: colors.bg,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          appW(18)),
+                                                ),
+                                                child: Text(
+                                                  "5 minutes",
                                                   style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: appW(27),
+                                                    color: colors.black,
+                                                    fontSize: appW(10),
                                                     fontWeight: FontWeight.bold,
                                                     fontFamily:
                                                         FontNames.poppins,
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                  height: appH(5),
+                                              ),
+                                              Column(
+                                                children: [
+                                                  Text(
+                                                    "Falling asleep",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: appW(27),
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily:
+                                                          FontNames.poppins,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: appH(5),
+                                                  ),
+                                                  Text(
+                                                    textAlign: TextAlign.end,
+                                                    "Meditation to prepare the \nmind for sleep",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: appW(13),
+                                                      fontFamily:
+                                                          FontNames.poppins,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Container(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: appW(13),
+                                                  vertical: appH(7),
                                                 ),
-                                                Text(
-                                                  textAlign: TextAlign.end,
-                                                  "Meditation to prepare the \nmind for sleep",
+                                                decoration: BoxDecoration(
+                                                  color: colors.orange,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          appW(21)),
+                                                ),
+                                                child: Text(
+                                                  "Getting started",
                                                   style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: appW(13),
+                                                    color: colors.bg,
+                                                    fontSize: appW(15),
+                                                    fontWeight: FontWeight.bold,
                                                     fontFamily:
                                                         FontNames.poppins,
                                                   ),
                                                 ),
-                                              ],
-                                            ),
-                                            Container(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: appW(13),
-                                                vertical: appH(7),
-                                              ),
-                                              decoration: BoxDecoration(
-                                                color: colors.orange,
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        appW(21)),
-                                              ),
-                                              child: Text(
-                                                "Getting started",
-                                                style: TextStyle(
-                                                  color: colors.bg,
-                                                  fontSize: appW(15),
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: FontNames.poppins,
-                                                ),
-                                              ),
-                                            )
-                                          ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )),
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                          ),
                         ),
                         SizedBox(
                           height: appH(15),
@@ -188,6 +209,7 @@ class HomeScreen extends StatelessWidget {
                                 time: "5 minutes",
                                 title: "Anxiety",
                                 func: () {
+                                  ref.read(timerMinuteProvider.notifier).initialize(5);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -207,6 +229,7 @@ class HomeScreen extends StatelessWidget {
                                 time: "12 minutes",
                                 title: "Physical \nhealth",
                                 func: () {
+                                  ref.read(timerMinuteProvider.notifier).initialize(12);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -237,6 +260,7 @@ class HomeScreen extends StatelessWidget {
                                 time: "7 minutes",
                                 title: "Productivity",
                                 func: () {
+                                  ref.read(timerMinuteProvider.notifier).initialize(7);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -256,6 +280,7 @@ class HomeScreen extends StatelessWidget {
                                 time: "15 minutes",
                                 title: "Work life",
                                 func: () {
+                                  ref.read(timerMinuteProvider.notifier).initialize(15);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
