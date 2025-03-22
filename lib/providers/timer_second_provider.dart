@@ -8,7 +8,7 @@ class TimerSecondProvider extends StateNotifier<int> {
     state = value;
   }
 
-  void start(WidgetRef ref) async {
+  void start(WidgetRef ref, int minuteVal) async {
     while (ref.watch(timerMinuteProvider) > 0 || state > 0) {
       if (state == 0) {
         ref.read(timerMinuteProvider.notifier).decrement();
@@ -17,6 +17,8 @@ class TimerSecondProvider extends StateNotifier<int> {
       state--;
       await Future.delayed(Duration(seconds: 1));
     }
+
+    ref.read(timerMinuteProvider.notifier).initialize(minuteVal);
   }
 }
 

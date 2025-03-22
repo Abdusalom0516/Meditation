@@ -90,8 +90,15 @@ class TimerScreen extends StatelessWidget {
                           minimumSize: Size.zero,
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
-                        onPressed: () =>
-                            ref.read(timerSecondProvider.notifier).start(ref),
+                        onPressed: () {
+                          if (ref.watch(timerSecondProvider) == 0 &&
+                              ref.watch(timerMinuteProvider) >= 5) {
+                            ref.read(timerSecondProvider.notifier).start(
+                                  ref,
+                                  ref.watch(timerMinuteProvider),
+                                );
+                          }
+                        },
                         child: Container(
                           height: appH(70),
                           width: appW(70),
