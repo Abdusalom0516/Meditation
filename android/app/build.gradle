@@ -42,3 +42,7 @@ android {
 flutter {
     source = "../.."
 }
+
+// dependencies {
+//     implementation 'me.carda:AndroidAwnCore:0.10.0'
+// }
