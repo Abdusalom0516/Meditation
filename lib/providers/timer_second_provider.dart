@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meditation/core/services/local_notification.dart';
 import 'package:meditation/providers/timer_minute_provider.dart.dart';
 
 class TimerSecondProvider extends StateNotifier<int> {
@@ -18,6 +19,7 @@ class TimerSecondProvider extends StateNotifier<int> {
       await Future.delayed(Duration(seconds: 1));
     }
 
+    LocalNotification.showNotification('Time is up!');
     ref.read(timerMinuteProvider.notifier).initialize(minuteVal);
   }
 }

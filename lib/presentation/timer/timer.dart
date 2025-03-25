@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:meditation/core/common/widgets/app_state_wrapper.dart';
 import 'package:meditation/core/constants/font_names.dart';
 import 'package:meditation/core/utils/responsiveness.dart';
@@ -118,11 +119,10 @@ class TimerScreen extends StatelessWidget {
                       SizedBox(height: appH(15)),
                       Text(
                         "${ref.watch(timerMinuteProvider).toString().padLeft(2, "0")}:${ref.watch(timerSecondProvider).toString().padLeft(2, "0")}",
-                        style: TextStyle(
-                          color: Colors.white,
+                        style: GoogleFonts.robotoMono(
                           fontSize: appW(21),
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontFamily: FontNames.poppins,
                         ),
                       ),
                       SizedBox(height: appH(79)),
